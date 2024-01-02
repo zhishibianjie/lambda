@@ -17,11 +17,10 @@ class AWSComponent {
             Properties.Function.FunctionName = Properties.Function.Name;
             delete Properties.Function.Name;
         }
-
         if (Properties.Function && Properties.Function.Environment && Properties.Function.Environment.Variables) {
             const variables = {}
             for (let i = 0; i < Properties.Function.Environment.Variables.length; i++) {
-                variables[Properties.Function.Environment.Variables[0].Key] = Properties.Function.Environment.Variables[0].Value
+                variables[Properties.Function.Environment.Variables[i].Key] = Properties.Function.Environment.Variables[i].Value
             }
             Properties.Function.Environment.Variables = variables
         }
@@ -29,7 +28,7 @@ class AWSComponent {
         if (Properties.Function && Properties.Function.Tags) {
             const tags = {}
             for (let i = 0; i < Properties.Function.Tags.length; i++) {
-                tags[Properties.Function.Tags[0].Key] = Properties.Function.Tags[0].Value
+                tags[Properties.Function.Tags[i].Key] = Properties.Function.Tags[i].Value
             }
             Properties.Function.Tags = tags
         }
@@ -37,9 +36,9 @@ class AWSComponent {
         if (Properties.Events) {
             const events = {}
             for (let i = 0; i < Properties.Events.length; i++) {
-                events[Properties.Events[0].Name] = {
-                    Type: Properties.Events[0].Type,
-                    Properties: Properties.Events[0].Properties,
+                events[Properties.Events[i].Name] = {
+                    Type: Properties.Events[i].Type,
+                    Properties: Properties.Events[i].Properties,
                 }
             }
             Properties.Events = events
